@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Presets/Input System/Test_01 Controls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Presets/Input System/DefaultControl.inputactions'
 
 using System;
 using System.Collections;
@@ -8,13 +8,13 @@ using UnityEngine.InputSystem.Utilities;
 
 namespace GBDKK.InputSystem
 {
-    public class @TestControl : IInputActionCollection, IDisposable
+    public class @DefaultControl : IInputActionCollection, IDisposable
     {
         public InputActionAsset asset { get; }
-        public @TestControl()
+        public @DefaultControl()
         {
             asset = InputActionAsset.FromJson(@"{
-    ""name"": ""Test_01 Controls"",
+    ""name"": ""DefaultControl"",
     ""maps"": [
         {
             ""name"": ""Char"",
@@ -26,12 +26,20 @@ namespace GBDKK.InputSystem
                     ""id"": ""04fa9d67-1b26-457d-9203-ffbdae4faaff"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
-                    ""interactions"": ""Hold""
+                    ""interactions"": """"
                 },
                 {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""bedafe9a-424f-4c60-8848-50c1f7fd7461"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""WeaponFire"",
+                    ""type"": ""Button"",
+                    ""id"": ""2b151ce9-7813-42ad-8f5f-55f52b0268ea"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -191,6 +199,17 @@ namespace GBDKK.InputSystem
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6fb1542f-51e6-4fb3-96f8-96b0c57e163b"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WeaponFire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -201,6 +220,7 @@ namespace GBDKK.InputSystem
             m_Char = asset.FindActionMap("Char", throwIfNotFound: true);
             m_Char_HorMovement = m_Char.FindAction("HorMovement", throwIfNotFound: true);
             m_Char_Jump = m_Char.FindAction("Jump", throwIfNotFound: true);
+            m_Char_WeaponFire = m_Char.FindAction("WeaponFire", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -252,12 +272,14 @@ namespace GBDKK.InputSystem
         private ICharActions m_CharActionsCallbackInterface;
         private readonly InputAction m_Char_HorMovement;
         private readonly InputAction m_Char_Jump;
+        private readonly InputAction m_Char_WeaponFire;
         public struct CharActions
         {
-            private @TestControl m_Wrapper;
-            public CharActions(@TestControl wrapper) { m_Wrapper = wrapper; }
+            private @DefaultControl m_Wrapper;
+            public CharActions(@DefaultControl wrapper) { m_Wrapper = wrapper; }
             public InputAction @HorMovement => m_Wrapper.m_Char_HorMovement;
             public InputAction @Jump => m_Wrapper.m_Char_Jump;
+            public InputAction @WeaponFire => m_Wrapper.m_Char_WeaponFire;
             public InputActionMap Get() { return m_Wrapper.m_Char; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -273,6 +295,9 @@ namespace GBDKK.InputSystem
                     @Jump.started -= m_Wrapper.m_CharActionsCallbackInterface.OnJump;
                     @Jump.performed -= m_Wrapper.m_CharActionsCallbackInterface.OnJump;
                     @Jump.canceled -= m_Wrapper.m_CharActionsCallbackInterface.OnJump;
+                    @WeaponFire.started -= m_Wrapper.m_CharActionsCallbackInterface.OnWeaponFire;
+                    @WeaponFire.performed -= m_Wrapper.m_CharActionsCallbackInterface.OnWeaponFire;
+                    @WeaponFire.canceled -= m_Wrapper.m_CharActionsCallbackInterface.OnWeaponFire;
                 }
                 m_Wrapper.m_CharActionsCallbackInterface = instance;
                 if (instance != null)
@@ -283,6 +308,9 @@ namespace GBDKK.InputSystem
                     @Jump.started += instance.OnJump;
                     @Jump.performed += instance.OnJump;
                     @Jump.canceled += instance.OnJump;
+                    @WeaponFire.started += instance.OnWeaponFire;
+                    @WeaponFire.performed += instance.OnWeaponFire;
+                    @WeaponFire.canceled += instance.OnWeaponFire;
                 }
             }
         }
@@ -291,6 +319,7 @@ namespace GBDKK.InputSystem
         {
             void OnHorMovement(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
+            void OnWeaponFire(InputAction.CallbackContext context);
         }
     }
 }
